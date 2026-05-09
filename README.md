@@ -1,40 +1,85 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/create-next-app).
+# FlowState Task Manager
 
-## Getting Started
+A premium, high-performance team task management application built with Next.js 14, Supabase, and Tailwind CSS v4. Featuring a stunning glassmorphism design system ("FlowState"), this platform enables seamless project collaboration, robust role-based access control, and a beautifully interactive Kanban board experience.
 
-First, run the development server:
+## ✨ Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- **Stunning UI/UX**: Premium dark mode aesthetic with glassmorphic panels, glowing accents, and smooth micro-animations.
+- **Secure Authentication**: Built-in Email/Password authentication powered by Supabase.
+- **Role-Based Access Control (RBAC)**: Distinct permissions for `admin` and `member` roles within specific projects.
+- **Interactive Kanban Boards**: Effortlessly track task progress across "To Do", "In Progress", and "Done" stages.
+- **Dynamic Dashboards**: Real-time overview of your overdue tasks, upcoming deadlines, and personalized task inbox.
+- **Responsive Design**: Flawlessly optimized for both desktop and mobile viewing.
+
+## 🛠️ Tech Stack
+
+- **Framework**: [Next.js 14](https://nextjs.org/) (App Router)
+- **Styling**: [Tailwind CSS v4](https://tailwindcss.com/)
+- **Backend & Database**: [Supabase](https://supabase.com/) (PostgreSQL)
+- **Icons**: [Google Material Symbols](https://fonts.google.com/icons)
+- **Language**: TypeScript
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+Ensure you have the following installed:
+- Node.js (v18 or higher)
+- npm, yarn, pnpm, or bun
+- A Supabase account and project
+
+### Installation
+
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/AmandeepS1ngh/task-manager.git
+   cd task-manager
+   ```
+
+2. **Install dependencies:**
+   ```bash
+   npm install
+   ```
+
+3. **Set up Environment Variables:**
+   Create a `.env.local` file in the root directory and add your Supabase credentials:
+   ```env
+   NEXT_PUBLIC_SUPABASE_URL=your_supabase_project_url
+   NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
+   SUPABASE_SERVICE_ROLE_KEY=your_supabase_service_role_key
+   ```
+
+4. **Initialize the Database:**
+   Run the SQL commands found in `supabase-schema.sql` in your Supabase SQL editor to create the necessary tables, triggers, and Row Level Security (RLS) policies.
+
+5. **Start the Development Server:**
+   ```bash
+   npm run dev
+   ```
+
+6. **Open your browser:**
+   Navigate to [http://localhost:3000](http://localhost:3000) to see the application in action.
+
+## 📁 Project Structure
+
+```text
+├── app/
+│   ├── (auth)/             # Login and Registration routes
+│   ├── (dashboard)/        # Main app layout, Dashboard, and Project views
+│   └── api/                # Next.js Serverless API Routes
+├── components/             # Reusable UI components (Sidebar, Modals, Cards)
+├── lib/                    # Utilities, API client wrappers, Auth, RBAC logic
+├── supabase-schema.sql     # Database schema and policies
+└── globals.css             # Tailwind v4 configuration and custom variables
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🔐 Security & Architecture
 
-You can start editing the page by modifying `app/route.ts`. The page auto-updates as you edit the file.
+This project leverages a hybrid security model:
+- **Middleware**: Validates active user sessions at the edge.
+- **API Routes**: Securely handles database interactions, utilizing the `SUPABASE_SERVICE_ROLE_KEY` internally to bypass RLS for complex multi-table queries while strictly enforcing application-level RBAC logic before returning data.
+- **Supabase Auth**: Manages JWTs and secure user profiles.
 
-## Learn More
+## 📄 License
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-
-## API Routes
-
-This directory contains example API routes for the headless API app.
-
-For more details, see [route.js file convention](https://nextjs.org/docs/app/api-reference/file-conventions/route).
+This project is licensed under the MIT License.
